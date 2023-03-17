@@ -19,25 +19,27 @@ public class Service_Start extends Service {
     }
 
     void stopService() {
+        this.stopSelf();
         context.stopService(intent);
     }
 
     /**
      * 生命周期
+     *    onCreate、onStart、运行中、onDestroy
      */
-    // 1
+    // 只会调用 1 次（单例）
     public void onCreate() {
         super.onCreate();
     }
 
-    // 2
+    // 能调用多次
     public int onStartCommand(Intent intent, int flags, int startId) {
         return super.onStartCommand(intent, flags, startId);
     }
 
     // 3 服务运行中
 
-    // 4 服务销毁
+    // 只会调用 1 次
     public void onDestroy() {
         super.onDestroy();
     }

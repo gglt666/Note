@@ -32,38 +32,43 @@ public class Service_Bind extends Service {
     void bindService() {
         context.bindService(intent, connection, 0);
     }
+    void stopService() { context.unbindService(connection); }
 
     /**
      * 生命周期
+     *    onCreate、onBind、运行中、onUnbind、onDestroy
      */
-    // 1
+    // 只会调用 1 次
     public void onCreate() {
         super.onCreate();
     }
 
-    // 2
+    //
     public IBinder onBind(Intent intent) {
         return null;
     }
 
-    // 3 服务运行中
-
-    // 4
+    //
     public boolean onUnbind(Intent intent) {
         return super.onUnbind(intent);
     }
 
-
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        return super.onStartCommand(intent, flags, startId);
-    }
-
+    // unbindService
+    // Context 不存在（如 Activity.finish()）
     public void onDestroy() {
         super.onDestroy();
     }
 
-
+    // 不会调用
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        return super.onStartCommand(intent, flags, startId);
+    }
+    //
     public void onRebind(Intent intent) {
         super.onRebind(intent);
     }
+
+    /**
+     * 当 start 后 bind，需调用 stop 而不是 unbind 才能停止服务
+     */
 }

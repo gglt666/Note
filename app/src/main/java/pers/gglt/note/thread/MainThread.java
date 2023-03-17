@@ -24,8 +24,14 @@ package pers.gglt.note.thread;
  */
 
 //https://www.jianshu.com/p/6d855e984b99
+//https://blog.csdn.net/zx54633089/article/details/115320309
 public class MainThread {
 
+    /** ANR */
+    // 原因  主线程导致（事件处理超时）
+    //      子线程导致（子线程持有锁/崩溃，主线程等待超时）
+
+    // 避免
     void anr() {
         // 文件读写
         // 数据库读写
