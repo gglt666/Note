@@ -1,5 +1,10 @@
 package pers.gglt.note.communication;
+
+import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
+
+import androidx.annotation.NonNull;
 
 /**
  * 作用  跨线程通信
@@ -27,7 +32,21 @@ import android.os.Looper;
  *
  */
 public class Handler_ {
+    Handler handler = new Handler();
+
+    /**作用*/
+    // 发送消息至 MessageQueue
+    // 处理 Looper 发来的消息
+    void sendMsg() {
+        handler.sendMessage(null); //发送给已绑定 Looper 的消息队列
+    }
+    void handleMsg(@NonNull Message msg) {
+       // ...
+    }
+
     void a() {
-        Looper.myQueue();
+        Looper mainLooper = Looper.getMainLooper();
+        Handler handler1 = new Handler(); //默认绑定主线程的 Looper
+        Handler handler2 = new Handler(mainLooper); //绑定了 Looper
     }
 }
