@@ -16,28 +16,24 @@ public class Service_Bind extends Service {
     Context context = Application_.getContext();
     ServiceConnection connection = new ServiceConnection() {
         @Override
-        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-
-        }
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {}
 
         @Override
-        public void onServiceDisconnected(ComponentName componentName) {
-
-        }
+        public void onServiceDisconnected(ComponentName componentName) {}
     };
 
-    /**
-     * 使用方式
-     */
+    /** 使用方式*/
     void bindService() {
         context.bindService(intent, connection, 0);
     }
-    void stopService() { context.unbindService(connection); }
 
-    /**
-     * 生命周期
-     *    onCreate、onBind、运行中、onUnbind、onDestroy
-     */
+    void stopService() {
+        context.unbindService(connection);
+    }
+
+    /** 生命周期 */
+    // onCreate、onBind、运行中、onUnbind、onDestroy
+
     // 只会调用 1 次
     public void onCreate() {
         super.onCreate();
@@ -63,6 +59,7 @@ public class Service_Bind extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         return super.onStartCommand(intent, flags, startId);
     }
+
     //
     public void onRebind(Intent intent) {
         super.onRebind(intent);
