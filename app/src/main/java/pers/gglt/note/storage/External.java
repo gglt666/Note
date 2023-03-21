@@ -4,7 +4,7 @@ import android.os.Environment;
 
 public class External {
 
-    void a() {
+    void getAbsolutePath() {
         Environment.getExternalStorageDirectory().getAbsolutePath();
     }
 }
