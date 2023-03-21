@@ -15,10 +15,7 @@ public class Service_Bind extends Service {
     Intent intent = new Intent();
     Context context = Application_.getContext();
     ServiceConnection connection = new ServiceConnection() {
-        @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {}
-
-        @Override
         public void onServiceDisconnected(ComponentName componentName) {}
     };
 

@@ -23,10 +23,9 @@ public class Service_Start extends Service {
         context.stopService(intent);
     }
 
-    /**
-     * 生命周期
-     *    onCreate、onStart、运行中、onDestroy
-     */
+    /**生命周期*/
+    // onCreate、onStart、运行中、onDestroy
+
     // 只会调用 1 次（单例）
     public void onCreate() {
         super.onCreate();

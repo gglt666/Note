@@ -1,4 +1,4 @@
-package pers.gglt.note;
+package pers.gglt.note.log;
 
 public class Logcat {
 
