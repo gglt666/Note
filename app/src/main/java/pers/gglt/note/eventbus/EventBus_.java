@@ -33,7 +33,7 @@ public class EventBus_ {
     }
 
     /**使用*/
-    //  https://cloud.tencent.com/developer/article/2099430?areaSource=103001.1&traceId=qKoE4iaYpIke3jcbf65_4
+    // https://cloud.tencent.com/developer/article/2099430?areaSource=103001.1&traceId=qKoE4iaYpIke3jcbf65_4
 
     /**原理*/
     // https://cloud.tencent.com/developer/article/2180928?areaSource=103001.3&traceId=qKoE4iaYpIke3jcbf65_4
