@@ -1,10 +1,35 @@
 package pers.gglt.note.thread;
 
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
 public class ThreadPool {
     /**优点*/
     // 性能（减少创建、销毁的开销）
     // 管理（可定时定期执行、控制并发数）
 
+    /**参数*/
+    void parameters() {
+        int corePoolSize = 0; //
+        int maximumPoolSize = 0; //
+        long keepAliveTime = 0L;
+        TimeUnit timeUnit = TimeUnit.SECONDS;
+        BlockingQueue<Runnable> workQueue = null;
+        ThreadFactory threadFactory = null;
+        new ThreadPoolExecutor(
+                corePoolSize, maximumPoolSize, keepAliveTime,
+                timeUnit, workQueue, threadFactory);
+
+        // 池内有若干核心和非核心线程, 最大线程数 = 两者之和
+    }
+
+    /**关闭流程*/
+    void shutdown() {
+        // https://cloud.tencent.com/developer/article/1963812
+    }
 
     /**类型*/
     void cacheThreadPool() {
