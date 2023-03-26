@@ -1,4 +1,4 @@
-package pers.gglt.other.git;
+package pers.gglt.other;
 
 public class Resume {
     /**注意点*/
@@ -18,7 +18,6 @@ public class Resume {
     // 熟悉Android平台UI设计，能够熟练使用Android SDK；
     // 性能优化；
     // UI适配
-
 
     // 项目经验
     // 智能门禁系统

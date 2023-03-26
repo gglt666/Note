@@ -1,4 +1,4 @@
-package pers.gglt.other.git;
+package pers.gglt.other;
 
 public class Git {
 }
