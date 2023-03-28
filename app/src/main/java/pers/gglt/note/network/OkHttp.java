@@ -36,13 +36,9 @@ public class OkHttp {
 
         client.newCall(request).enqueue(new Callback() { //异步请求
             @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
+            public void onFailure(Call call, IOException e) {}
             @Override
-            public void onResponse(Call call, Response response) {
-
-            }
+            public void onResponse(Call call, Response response) {}
         });
     }
     String postFormBody(String url) throws IOException {

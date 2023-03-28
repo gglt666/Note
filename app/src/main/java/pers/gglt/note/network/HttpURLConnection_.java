@@ -20,12 +20,12 @@ public class HttpURLConnection_ {
             ByteArrayOutputStream os = new ByteArrayOutputStream();
 
             int len;
-            byte buffer[] = new byte[1024];
+            byte[] buffer = new byte[1024];
             while ((len = is.read(buffer)) != -1) os.write(buffer, 0, len);
 
             is.close();
             os.close();
-            return new String(os.toByteArray());
+            return os.toString();
         }
         return null;
     }
