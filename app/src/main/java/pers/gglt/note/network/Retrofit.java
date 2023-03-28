@@ -36,12 +36,12 @@ public class Retrofit {
         private RequestInterface requestInterface;
 
         private HttpRequest() {
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(baseUrl)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .callbackExecutor(Executors.newSingleThreadExecutor()) //使用单独的线程处理 (这很重要,如果是下载文件就会报错)
-                    .build();
-            requestInterface = retrofit.create(RequestInterface.class);
+//            retrofit = new Retrofit.Builder()
+//                    .baseUrl(baseUrl)
+//                    .addConverterFactory(GsonConverterFactory.create())
+//                    .callbackExecutor(Executors.newSingleThreadExecutor()) //使用单独的线程处理 (这很重要,如果是下载文件就会报错)
+//                    .build();
+//            requestInterface = retrofit.create(RequestInterface.class);
         }
 
         public  HttpRequest getInstance() {
