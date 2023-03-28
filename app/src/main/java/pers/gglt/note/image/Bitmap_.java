@@ -43,4 +43,7 @@ public class Bitmap_ {
     /**优化*/
     // 降低分辨率
     // 减少像素点大小
+
+    /**OOM*/
+    //https://blog.csdn.net/leansmall/article/details/50359148
 }
