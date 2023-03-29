@@ -20,44 +20,29 @@ public class Service_Bind extends Service {
     };
 
     /** 使用方式*/
+    void register() {} //清单文件注册
     void bindService() {
-        context.bindService(intent, connection, 0);
+        context.bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }
-
     void stopService() {
         context.unbindService(connection);
     }
 
-    /** 生命周期 */
-    // onCreate、onBind、运行中、onUnbind、onDestroy
 
-    // 只会调用 1 次
-    public void onCreate() {
-        super.onCreate();
-    }
 
-    //
+    /** 生命周期 */ // onCreate、onBind、运行中、onUnbind、onDestroy
+    public void onCreate() {super.onCreate();} //只会调用1次
     public IBinder onBind(Intent intent) {
         return null;
-    }
-
-    //
+    } //可调用多次
     public boolean onUnbind(Intent intent) {
         return super.onUnbind(intent);
     }
-
-    // unbindService
-    // Context 不存在（如 Activity.finish()）
     public void onDestroy() {
         super.onDestroy();
+        // unbindService
+        // Context 不存在（如 Activity.finish()）
     }
-
-    // 不会调用
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        return super.onStartCommand(intent, flags, startId);
-    }
-
-    //
     public void onRebind(Intent intent) {
         super.onRebind(intent);
     }
