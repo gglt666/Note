@@ -4,6 +4,7 @@ plugins {
 
 android {
     compileSdk 32
+    viewBinding {enabled = true}
 
     defaultConfig {
         applicationId "pers.gglt.note"
