@@ -1,4 +1,4 @@
-package pers.gglt.note.view;
+package pers.gglt.note.view.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

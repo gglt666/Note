@@ -5,7 +5,8 @@ import android.content.Context;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.LinearLayout;
+
+import com.blankj.utilcode.util.KeyboardUtils;
 
 public class Keyboard extends Activity {
     /**禁止 EditText 自动弹出*/
@@ -20,9 +21,11 @@ public class Keyboard extends Activity {
     }
 
     /**隐藏*/
-    void hide(Context context, View view) {
+    void hideSoftKeyboard(Context context, View view) {
         InputMethodManager manager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+        KeyboardUtils.hideSoftInput(view); //blankJ
     }
 
     /**监听*/
