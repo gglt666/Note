@@ -25,5 +25,4 @@ public class ViewBinding extends AppCompatActivity {
         //viewBinding.tvContent.setText("要么停止成长，要么不断向前");
         //viewBinding.imgShow.setImageResource(R.drawable.img);
     }
-
 }
