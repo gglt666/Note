@@ -1,4 +1,4 @@
-//package pers.gglt.note.storage;
+package pers.gglt.note.storage;//package pers.gglt.note.storage;
 //
 //import android.os.Environment;
 //
