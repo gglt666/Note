@@ -1,4 +1,4 @@
-package pers.gglt.other;
+package pers.gglt.note.z_other;
 
 public class Resume {
     /**注意点*/

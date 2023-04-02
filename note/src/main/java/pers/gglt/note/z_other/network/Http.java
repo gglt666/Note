@@ -1,4 +1,4 @@
-package pers.gglt.other.network;
+package pers.gglt.note.z_other.network;
 
 public class Http {
 
