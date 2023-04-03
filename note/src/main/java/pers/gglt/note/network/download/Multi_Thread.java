@@ -1,4 +1,4 @@
-package pers.gglt.note.download;
+package pers.gglt.note.network.download;
 
 public class Multi_Thread {
     /**使用*/
