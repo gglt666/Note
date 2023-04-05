@@ -1,4 +1,4 @@
-package pers.gglt.note.z_other.network;
+package pers.gglt.note.network.http;
 
 public class Https {
     // Https多了一层证书机制，证书相关的API如X509Certificate、KeyStore、SSLSocketFactory等
