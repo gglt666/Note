@@ -1,5 +1,5 @@
 package pers.gglt.note.ndk;
-//https://cloud.tencent.com/developer/article/1394197?areaSource=103001.4&traceId=VnfqWD1vHhX5ZRjNEr7Gj
+
 public class Jni {
     /**核心*/
     // 生成和使用so文件 (share object,是机器可共享的二进制代码)
@@ -26,4 +26,9 @@ public class Jni {
     // 写JNI接口
     // 写c++
 
+    /**使用so*/
+    // jniLibs.srcDirs=['libs'] (将so文件目录指定为libs文件夹)
+    // System.loadLibrary("native2-lib");
+
+    // gradle在构建APK时，一定是指定了好几个工程中存放.so文件的目录。在build时，会遍历这些目录，并将指定目录下的.so文件复制到APK包中。如果名字相同的.so文件，则会相互覆盖。由于LibraryA是先build的，所以LibraryA中的.so文件会被ProjectA中的.so文件覆盖。
 }

@@ -1,11 +1,10 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext.kotlin_version = '1.6.10'
     repositories {
-        mavenCentral()
+        mavenCentral() //依赖的仓库
     }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    dependencies { //用于配置构建过程中的依赖包 (不能添加应用模块中依赖的库)
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" //依赖gradle版本
     }
 }
 plugins {
