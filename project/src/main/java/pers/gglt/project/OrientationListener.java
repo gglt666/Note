@@ -10,8 +10,7 @@ public class OrientationListener extends OrientationEventListener {
 
     @Override
     public void onOrientationChanged(int i) {
-        // 平放时，检测不到有效的角度
-        if (i == OrientationEventListener.ORIENTATION_UNKNOWN) return;
+        if (i == OrientationEventListener.ORIENTATION_UNKNOWN) return; //平放
         if (i > 350 || i < 10) { //0度
             i = 0;
         } else if (i > 80 && i < 100) { //90度
@@ -22,4 +21,6 @@ public class OrientationListener extends OrientationEventListener {
             i = 270;
         }
     }
+
+    //相机持续正向  https://cloud.tencent.com/developer/article/1193462?areaSource=103001.2&traceId=RQKkG4F29u73QskfAwNOP
 }
