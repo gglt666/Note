@@ -5,6 +5,6 @@ import android.os.Environment;
 public class External {
 
     void getAbsolutePath() {
-        Environment.getExternalStorageDirectory().getAbsolutePath();
+        Environment.getExternalStorageDirectory().getAbsolutePath(); //"/storage/emulated/0"
     }
 }
