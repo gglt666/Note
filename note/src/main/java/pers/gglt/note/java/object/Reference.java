@@ -1,4 +1,4 @@
-package pers.gglt.note.object;
+package pers.gglt.note.java.object;
 
 import java.lang.ref.PhantomReference;
 import java.lang.ref.ReferenceQueue;

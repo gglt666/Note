@@ -8,6 +8,9 @@ import org.json.JSONObject;
 import java.util.List;
 
 public class Generics {
+    /**作用*/
+    // 提高代码复用性
+
     /**通配符*/
     // ? 和 T (?表示不确定类型) (T表示确定类型)
     // K 和 V (表示键值)
@@ -36,20 +39,16 @@ public class Generics {
     }
 
     /**泛型函数*/
-    <T> void function() {}
-    <T> T f(T t) {return t;}
+    <T> void fun(T t) {}
+    <T> T func(T t) {return t;}
+    <T> T[] func(T...arg){return arg;}
     static <T> void staticFunction(T t) {}
-    static <T> T parseObject(String response, Class<T> object) {
-        T t = new Gson().fromJson(response, object);
-        return t;
-    }
+    static <T> T parseObject(String response, Class<T> object) {return (T) object;}
 
     /**使用*/
     void use() {
         Person<Integer, String> person = new Person();
-        person.age = 21;
+        person.age = 22;
         person.name = "GG";
     }
-
-    //https://zhuanlan.zhihu.com/p/433014792
 }

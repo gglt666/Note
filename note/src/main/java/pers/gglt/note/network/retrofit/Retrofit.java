@@ -12,8 +12,24 @@ import retrofit2.http.Query;
 //https://ask.qcloudimg.com/http-save/yehe-418957/vuccneccge.png?imageView2/2/w/2560/h/7000
 public class Retrofit {
     /**概念*/
-    // Retrofit将 Http请求 抽象成 Java接口
-    // 采用注解描述和配置网络请求参数，用动态代理将该接口的注解“翻译”成一个 Http的url请求，最后再执行 Http 请求
+    // 将Http请求抽象成Java接口
+    // 采用注解描述和配置网络请求参数，用动态代理将该接口的注解“翻译”成一个Http的url请求，最后再执行Http请求
+
+    /**优点*/
+    // 可配置HttpClient
+    // 注解可定制
+    // 可同步/异步
+    // 解耦
+    // 可配置数据解析工具
+
+    /**流程*/
+    // 通过解析网络请求接口的注解配置网络请求参数
+    // 通过动态代理生成网络请求对象
+    // 通过网络请求适配器将网络请求对象 进行平台适配
+    // 通过网络请求执行器发送网络请求
+    // 通过数据转换器 解析服务器返回的数据
+    // 通过回调执行器切换至主线程
+    // 用户在主线程处理返回结果
 
     interface RequestInterface {
         @GET("article/list/{pageNum}/json")
@@ -37,12 +53,9 @@ public class Retrofit {
 
         // @Query
         // 一般是把key-value拼接到url的后面, ?key=value&key1=value1
-
-
     }
 
     public class HttpRequest {
-
         private volatile HttpRequest httpRequest;
         private String baseUrl = "https://www.wanandroid.com/"; //需以'/'结尾
         private Retrofit retrofit;
@@ -68,9 +81,6 @@ public class Retrofit {
             return httpRequest;
         }
 
-        public RequestInterface getInterfaceInstance() {
-            return requestInterface;
-        }
-
+        public RequestInterface getInterfaceInstance() {return requestInterface;}
     }
 }
