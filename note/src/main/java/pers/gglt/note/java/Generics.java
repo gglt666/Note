@@ -1,12 +1,5 @@
 package pers.gglt.note.java;
 
-import com.google.gson.Gson;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.List;
-
 public class Generics {
     /**作用*/
     // 提高代码复用性
