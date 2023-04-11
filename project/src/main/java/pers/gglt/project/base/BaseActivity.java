@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -21,20 +19,14 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     private View contextView = null; //当前Activity渲染的View
     protected final String TAG = this.getClass().getSimpleName();
 
-    public abstract void widgetClick(View v);
-
-    public abstract void initParams(Bundle params);
-
     public abstract View bindView();
-
     public abstract int bindLayout();
-
+    public abstract void widgetClick(View v);
     public abstract void initView(final View view);
-
+    public abstract void initParams(Bundle params);
+    public abstract void doBusiness(Context mContext);
     public abstract void setListeners();
     public abstract void unsetListeners();
-
-    public abstract void doBusiness(Context mContext);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +37,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         if (mAllowFullScreen) requestWindowFeature(Window.FEATURE_NO_TITLE);
         if (!isAllowScreenRotate) setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        contextView = bindView() == null ? LayoutInflater.from(this).inflate(bindLayout(), null) : view;
-        initView(contextView);
-        setContentView(contextView);
+//        contextView = bindView() == null ? LayoutInflater.from(this).inflate(bindLayout(), null) : view;
+//        initView(contextView);
+//        setContentView(contextView);
         setListeners();
         doBusiness(this);
     }

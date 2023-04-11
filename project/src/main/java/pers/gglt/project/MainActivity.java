@@ -2,6 +2,7 @@ package pers.gglt.project;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import pers.gglt.project.base.BaseActivity;

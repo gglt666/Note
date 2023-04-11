@@ -1,8 +1,6 @@
 package pers.gglt.note.network.http;
 
 public class Http {
-
-
     /**特点*/
     // 应用层协议 (需要遵循规范)
     // 无状态 (事务独立)

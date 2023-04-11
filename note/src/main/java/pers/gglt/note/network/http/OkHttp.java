@@ -1,4 +1,4 @@
-package pers.gglt.note.network;
+package pers.gglt.note.network.http;
 
 import java.io.IOException;
 
@@ -29,10 +29,7 @@ public class OkHttp {
     void postJsonData(String url, String json) {
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         RequestBody body = RequestBody.create(JSON, json);
-        Request request = new Request.Builder()
-                .url(url)
-                .post(body)
-                .build();
+        Request request = new Request.Builder().url(url).post(body).build();
 
         client.newCall(request).enqueue(new Callback() { //异步请求
             @Override

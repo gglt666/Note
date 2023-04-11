@@ -98,8 +98,19 @@ public class UnitTest {
         return c.getTime();
     }
 
+    public static Date stepMinute(Date sourceDate, int minute) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(sourceDate);
+        c.add(Calendar.MINUTE, minute);
+        return c.getTime();
+    }
+
 
     @Test
-    public void d() {
+    public void d() throws ParseException {
+        String lastPassTime = "2023-04-11 14:34:53";
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date deadlineTime = stepMinute(df.parse(lastPassTime), 1);
+        if (new Date().after(deadlineTime)) System.out.println("+1");
     }
 }

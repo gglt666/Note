@@ -1,6 +1,7 @@
 package pers.gglt.project;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.OrientationEventListener;
 
 public class OrientationListener extends OrientationEventListener {
