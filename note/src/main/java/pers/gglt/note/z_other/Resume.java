@@ -51,7 +51,9 @@ public class Resume {
 
 
     //地图支持重力感应，自动切换横竖屏。实现自动切换监听器。 最初使用OrientationEventListener 监听器，但是角度变化连续，横竖屏有时无法分辨，造成误判。
-    // 方向检测设备的轴是否从现实世界中旋转;它可以检测磁北方的倾斜度和度数.请注意,此传感器已弃用  https://www.yisu.com/zixun/205227.html
+    // 只有当手机竖直握持，然后左右转动时是有效的，手机平放，左右转动，是感应不到角度变化的。原因是OrientationEventListener原理是只采集了Sensor X和Y方向上的加速度进行计算的
+    //当屏幕实际已经进行旋转切换，但是OrientationEventListener回调的值还没到达旋转后的值。这就导致了系统屏幕旋转了，但是我们app的UI因为没有收到callback而没有改变的问题
+    // https://www.jb51.net/article/256143.htm
 
     // 因此选择加速度传感器监听，根据坐标x，y大小区别手机状态
     // activity方向默认跟随屏幕旋转,当横屏时界面右下方可退出横屏模式,
