@@ -1,7 +1,10 @@
 package pers.gglt.note.image;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.BitmapRegionDecoder;
+import android.widget.ImageView;
+
+import java.io.IOException;
 
 public class Bitmap_ {
     Bitmap bitmap = Bitmap.createBitmap((Bitmap) null);
@@ -46,4 +49,17 @@ public class Bitmap_ {
 
     /**OOM*/
     //https://blog.csdn.net/leansmall/article/details/50359148
+
+    /**大图加载*/
+    //https://cloud.tencent.com/developer/article/1176066?areaSource=103001.2&traceId=nuzKUw9LM2-OPP5n8l65B
+    //https://cloud.tencent.com/developer/article/2027965?areaSource=103001.5&traceId=nuzKUw9LM2-OPP5n8l65B
+
+    /**区域加载*/
+    // 作用: 只显示大图的一部分
+    void regionLoad() throws IOException {
+        ImageView imgView = null;
+        BitmapRegionDecoder decoder = BitmapRegionDecoder.newInstance("");
+        Bitmap bitmap = decoder.decodeRegion(null, null);
+        imgView.setImageBitmap(bitmap);
+    }
 }

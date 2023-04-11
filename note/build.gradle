@@ -8,7 +8,7 @@ android { //声明android插件后,可使用插件提供的内容进行构建配
 
     defaultConfig { //配置应用的默认属性,可覆盖Manifest中的属性
         applicationId "pers.gglt.note" //应用唯一标识
-        minSdk 21 //运行应用的最小API
+        minSdk 31 //运行应用的最小API
         targetSdk 32 //通知系统当前应用已经被该版本测试过
         versionCode 1 //版本号
         versionName "1.0" //版本名称
