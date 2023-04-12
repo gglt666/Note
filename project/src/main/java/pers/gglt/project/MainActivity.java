@@ -2,10 +2,10 @@ package pers.gglt.project;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import pers.gglt.project.base.BaseActivity;
+import pers.gglt.project.senor.orientation.OrientationListener;
 
 public class MainActivity extends BaseActivity {
     OrientationListener orientationListener;

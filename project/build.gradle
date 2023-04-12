@@ -5,6 +5,7 @@ plugins {
 android {
     namespace 'pers.gglt.project'
     compileSdk 33
+    viewBinding {enabled = true}
 
     defaultConfig {
         applicationId "pers.gglt.project"

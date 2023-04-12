@@ -1,4 +1,4 @@
-package pers.gglt.project;
+package pers.gglt.project.senor.orientation;
 
 import android.content.Context;
 import android.util.Log;

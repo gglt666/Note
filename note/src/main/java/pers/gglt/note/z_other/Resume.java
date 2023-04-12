@@ -66,8 +66,19 @@ public class Resume {
     //Glide
     // 大图加载处理: 获取图片的宽和高,根据图片的宽和高计算缩放比,根据缩放比将图片加载到内存中。
 
-    //同时采用局部加载，通过BitmapRegionDecoder每次只加载显示一块区域的Bitmap，配合GestureDetector与Scroller实现手势滑动过程中动态显示区域图片
+    /**同时采用手势监听和图像局部加载优化用户体验,通过OnTouchListener,配合xxx实现地图的缩放及动态信息展示*/
+    // 判断单/双指
+    // 双击缩放
+    // 双指滑动缩放 (根据双指的移动距离(勾股定理)来判断图片放缩倍数) (计算两点间的中心点)
+    // 单指拖动查看
 
+    //同时采用局部加载，通过BitmapRegionDecoder每次只加载一块区域的图像，配合GestureDetector与Scroller实现手势滑动过程中动态显示区域图片
+    //设置图片
+    //指定显示区域
+    //借助GestureDetector和scroller改变显示的区域位置
+    //      (重新指定两个顶点的位置后重绘)
+    //      (指定手指离开后的惯性,如果按下就停止滑动)
+    //      (重写View的computeScroll计算View如何滑动)
 
     //门禁设备使用RK系列主板进行开发
 
