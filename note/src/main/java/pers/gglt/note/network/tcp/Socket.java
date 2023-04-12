@@ -1,4 +1,4 @@
-package pers.gglt.note.z_other.network;
+package pers.gglt.note.network.tcp;
 
 public class Socket {
     /**特点*/
@@ -7,8 +7,8 @@ public class Socket {
 
     /**通道模型*/
     // TCP (持续性) (流式通信)
-    // Client向Server的输出流写数据后发送，反之
-    // Client读取Server数据，实际上就是拿到Server的输入流（inputStream）去读（read），反之
+    // Client向Server的输出流写数据后发送,反之
+    // Client读取Server数据，实际上是读取Server的输入流，反之
 
     // UDP (发送的数据报不一定以相同的次序到达接收方)
     // 通过封装 DatagramPacket 通信 (https://ask.qcloudimg.com/http-save/yehe-3147491/jxbddb9d49.png?imageView2/2/w/2560/h/7000)
