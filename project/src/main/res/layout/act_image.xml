@@ -9,7 +9,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:scaleType="matrix"
-        android:src="@drawable/nan_1"
+        android:src="@drawable/ninja_xiaonan_2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

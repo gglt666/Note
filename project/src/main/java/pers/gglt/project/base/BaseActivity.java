@@ -20,12 +20,11 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     private View contextView = null; //当前Activity渲染的View
     protected final String TAG = this.getClass().getSimpleName();
 
-    public abstract View bindView();
-    public abstract int bindLayout();
+    public abstract void bindLayout();
     public abstract void widgetClick(View v);
     public abstract void initView(final View view);
     public abstract void initParams(Bundle params);
-    public abstract void doBusiness(Context mContext);
+    public abstract void doBusiness(Context context);
     public abstract void setListeners();
     public abstract void unsetListeners();
 
@@ -33,14 +32,13 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initParams(getIntent().getExtras());
-        View view = bindView();
+
         if (isSteepStatusBar) steepStatusBar();
         if (mAllowFullScreen) requestWindowFeature(Window.FEATURE_NO_TITLE);
         if (!isAllowScreenRotate) setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-//        contextView = bindView() == null ? LayoutInflater.from(this).inflate(bindLayout(), null) : view;
+        bindLayout();
         initView(contextView);
-//        setContentView(contextView);
         setListeners();
         doBusiness(this);
     }
@@ -63,8 +61,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         return (T) super.findViewById(resId);
     }
 
-    @Override
-    public void onClick(View v) {
+    @Override public void onClick(View v) {
         widgetClick(v);
     }
 
@@ -145,10 +142,10 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     /**
      * [是否允许屏幕旋转] *
-     * @param isAllowScreenRoate
+     * @param isAllowScreenRotate
      */
-    public void setScreenRotate(boolean isAllowScreenRoate) {
-        this.isAllowScreenRotate = isAllowScreenRoate;
+    public void setScreenRotate(boolean isAllowScreenRotate) {
+        this.isAllowScreenRotate = isAllowScreenRotate;
     }
 
 
