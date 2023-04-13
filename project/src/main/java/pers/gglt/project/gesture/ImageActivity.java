@@ -5,17 +5,17 @@ import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import pers.gglt.project.R;
+import pers.gglt.project.databinding.ActivityImageBinding;
 import pers.gglt.project.databinding.ActivityMainBinding;
 
 public class ImageActivity extends AppCompatActivity {
     private int mode = NONE;
-    ActivityMainBinding binding;
+    ActivityImageBinding binding;
     private float oriDis = 1f; //初始的两个手指按下的触摸点的距离
     private static final int NONE = 0;
     private static final int DRAG = 1;
@@ -28,8 +28,8 @@ public class ImageActivity extends AppCompatActivity {
     @SuppressLint("ClickableViewAccessibility")
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(R.layout.activity_main);
+        binding = ActivityImageBinding.inflate(getLayoutInflater());
+        setContentView(R.layout.activity_image);
 
         binding.iv.setOnLongClickListener(v -> true);
         binding.iv.setOnTouchListener((v, event) -> {

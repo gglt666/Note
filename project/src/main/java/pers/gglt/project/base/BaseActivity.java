@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -38,7 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         if (!isAllowScreenRotate) setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 //        contextView = bindView() == null ? LayoutInflater.from(this).inflate(bindLayout(), null) : view;
-//        initView(contextView);
+        initView(contextView);
 //        setContentView(contextView);
         setListeners();
         doBusiness(this);

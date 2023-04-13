@@ -12,7 +12,10 @@ import java.util.Date;
 public class UnitTest {
 
     @Test
-    public void d() throws ParseException {
+    public void a() throws Exception {
         System.out.println("???");
+        int a = 0;
+        System.out.println(--a);
+        System.out.println(++a);
     }
 }
