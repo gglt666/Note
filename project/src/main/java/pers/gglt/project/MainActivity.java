@@ -8,6 +8,8 @@ import android.view.View;
 import androidx.fragment.app.Fragment;
 
 import com.blankj.utilcode.util.FragmentUtils;
+import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.NetworkUtils;
 
 import pers.gglt.project.base.BaseActivity;
 import pers.gglt.project.databinding.ActMainBinding;
@@ -36,6 +38,13 @@ public class MainActivity extends BaseActivity {
 //            FragmentUtils.add(getSupportFragmentManager(), new Fragment());
             startActivity(new Intent(this, ImageAct.class));
         });
+
+        if (NetworkUtils.isWifiConnected()) {
+            String ssid = NetworkUtils.getSSID();
+            System.out.println(ssid);
+        } else {
+            LogUtils.e("Wifi没有连接");
+        }
     }
 
     @Override
