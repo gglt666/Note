@@ -9,6 +9,8 @@ import android.view.View.OnTouchListener;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blankj.utilcode.util.LogUtils;
+
 import pers.gglt.project.databinding.ActImageBinding;
 
 public class ImageAct extends AppCompatActivity {
@@ -18,19 +20,39 @@ public class ImageAct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActImageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        binding.iv.setOnTouchListener(new TouchListener());
+        //binding.iv.setOnTouchListener(new TouchListener());
+        binding.iv.setOnTouchListener(new MultiTouchListener() {
+            @Override
+            public boolean onMultiTouch(View v, MotionEvent event, int touchCount) {
+                LogUtils.d("touchCount = " + touchCount);
+                return false;
+            }
+        });
+    }
+
+    private static long lastClickTime = 0L; //上一次点击的时间
+    public static boolean isFastDoubleClick() {
+        long time = System.currentTimeMillis();
+        long timeD = time - lastClickTime;
+        if (timeD < 1000) {
+            //双击逻辑
+            return true;
+        }
+        lastClickTime = time;
+        return false;
     }
 
     class TouchListener implements OnTouchListener {
+        private static final int DRAG = 1; //拖拉模式
+        private static final int ZOOM = 2; //缩放模式
         private PointF startPoint = new PointF();
         private Matrix matrix = new Matrix();
         private Matrix currentMatrix = new Matrix(); //存放照片当前的矩阵
-        private int mode; //确定是放大还是缩小
-        private static final int DRAG = 1; //拖拉模式
-        private static final int ZOOM = 2; //缩放模式
+        private int mode;
         private float startDis; //开始距离
         private PointF midPoint; //中心点
 
+        @Override
         public boolean onTouch(View v, MotionEvent event) {
             switch (event.getAction() & MotionEvent.ACTION_MASK) { //得到低八位才能获取动作，所以要屏蔽高八位(通过与运算&255)
                 case MotionEvent.ACTION_DOWN: //手指下压
@@ -46,7 +68,7 @@ public class ImageAct extends AppCompatActivity {
                         matrix.postTranslate(dx, dy);
                     } else if (mode == ZOOM) { //缩放模式
                         float endDis = distance(event); //结束距离
-                        if (endDis > 10f) { //防止不规则手指触碰
+                        if (endDis > 10F) { //防止不规则手指触碰
                             float scale = endDis / startDis; //结束距离除以开始距离得到缩放倍数
                             //通过矩阵实现缩放
                             //参数：1.2.指定在xy轴的放大倍数;3,4以哪个参考点进行缩放
@@ -89,4 +111,4 @@ public class ImageAct extends AppCompatActivity {
         float midy = (event.getY(1) + event.getY(0)) / 2;
         return new PointF(midx, midy);
     }
-} 
+}
