@@ -39,12 +39,7 @@ public class MainActivity extends BaseActivity {
             startActivity(new Intent(this, ImageAct.class));
         });
 
-        if (NetworkUtils.isWifiConnected()) {
-            String ssid = NetworkUtils.getSSID();
-            System.out.println(ssid);
-        } else {
-            LogUtils.e("Wifi没有连接");
-        }
+
     }
 
     @Override

@@ -36,7 +36,6 @@ public class ThreadPool {
         // 特点  没有核心线程，为每个任务创建新线程或利用空闲线程执行(60s空闲时间)
         // 优点  立即执行任务
         // 场景  大量短时任务
-
     }
 
     void fixedThreadPool() {//

@@ -4,7 +4,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import com.blankj.utilcode.constant.TimeConstants;
 import com.blankj.utilcode.util.ConvertUtils;
+import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.NetworkUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.TimeUtils;
@@ -18,29 +20,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class TestForJava {
 
     @Test public void a() throws Exception {
-        String decStr1 = "3043677171";
-        String decStr2 = "4090718901";
-
-        String hexStr1 = "B56AD3F3";
-        String hexStr2 = "F3D36AB5";
-
-       //System.out.println(hexStr2DEC("B56AD3F3"));
-        byte[] hexBytes1 = ConvertUtils.hexString2Bytes(hexStr1);
-        byte[] hexBytes2 = ConvertUtils.hexString2Bytes(hexStr2);
-
-        byte[] convertBytes1 = changeBytesEndian(hexBytes1);
-        byte[] convertBytes2 = changeBytesEndian(hexBytes2);
-
-        String convertHexStr1 = ConvertUtils.bytes2HexString(convertBytes1);
-        String convertHexStr2 = ConvertUtils.bytes2HexString(convertBytes2);
-
-
-        System.out.println(convertHexStr1);
-        System.out.println(convertHexStr2);
+        if (NetworkUtils.isWifiConnected()) {
+            String ssid = NetworkUtils.getSSID();
+            System.out.println(ssid);
+        } else {
+            LogUtils.e("Wifi没有连接");
+        }
     }
 
     @Test public void b() {
@@ -106,9 +96,6 @@ public class TestForJava {
     }
 
 
-
-
-
     int delayMinute;
     StringBuilder detailInfo = new StringBuilder(); //通行结果的详细信息
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -134,6 +121,8 @@ public class TestForJava {
     String passRule1020 = "2023,2024 03,04 -1 -1 -1 -1";
     String passRule1120 = "2020-2022,2023-2025 03,05,04 -1 -1 -1 -1";
 
+    String test = "-1 -1 3-4 21,25 -1 -1";
+
     public class Result {
         public Result() {
         }
@@ -150,7 +139,7 @@ public class TestForJava {
         Result result = new Result();
         result.canPass = false;
 
-        String passRule = passRule31;
+        String passRule = test;
         int passNum = 0;
         String vipName = "GG";
         String passRuleName = "xxx";

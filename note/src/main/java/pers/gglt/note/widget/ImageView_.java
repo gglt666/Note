@@ -1,4 +1,4 @@
-package pers.gglt.note.xml;
+package pers.gglt.note.widget;
 
 import android.widget.ImageView;
 
