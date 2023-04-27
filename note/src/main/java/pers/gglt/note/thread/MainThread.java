@@ -10,15 +10,6 @@ package pers.gglt.note.thread;
  * 子线程不能访问 UI
  *      原因  控件不是线程安全的，若加锁则会导致阻塞
  *
- * ANR
- *      场景  5s 内无法响应用户输入事件
- *           BroadcastReceiver 在 10s 内无法结束
- *      原因  主线程导致（事件处理超时）
- *           子线程导致（子线程持有锁/崩溃，主线程等待超时）
- *
- *
- *
- *
  * Looper.loop 不会导致 ANR
  *      原因
  */
@@ -27,14 +18,15 @@ package pers.gglt.note.thread;
 //https://blog.csdn.net/zx54633089/article/details/115320309
 public class MainThread {
 
-    /** ANR原因 */
-    // 主线程导致（事件处理超时）
-    // 子线程导致（子线程持有锁/崩溃，主线程等待超时）
+    /**ANR原因*/
+    // 主线程导致 (事件处理超时)
+    // 子线程导致 (子线程持有锁/崩溃，主线程等待超时)
 
-    // 避免
-    void anr() {
-        // 文件读写
-        // 数据库读写
-        // 网络查询
-    }
+    /**ANR时间*/
+    // 5s  (Activity,Service)
+    // 10s (BroadCastReceiver)
+
+    /**ANR避免*/
+    // 子线程执行耗时操作 (访问网络,文件读写,数据库读写,复杂逻辑计算)
+
 }

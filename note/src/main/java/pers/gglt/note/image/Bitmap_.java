@@ -62,4 +62,12 @@ public class Bitmap_ {
         Bitmap bitmap = decoder.decodeRegion(null, null);
         imgView.setImageBitmap(bitmap);
     }
+
+
+    /**图片格式*/
+    // GIF (用于logo, 加载动画)()
+    // JPG (色彩丰富)
+    // PNG-8 ()
+    // PNG-24 (无损压缩)
+    // WEBP ()
 }

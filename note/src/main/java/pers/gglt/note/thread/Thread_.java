@@ -57,6 +57,11 @@ public class Thread_ {
     }
 
     /**安全*/
+    // volatile (只能保证可见性)
+    // synchronized ()
+    // lock
+    // reentrantLock
+
     volatile boolean flag;
     void volatile_() {
         new Thread(() -> {
