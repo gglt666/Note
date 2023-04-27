@@ -24,16 +24,13 @@ import java.util.concurrent.TimeUnit;
 
 public class TestForJava {
 
-    @Test public void a() throws Exception {
-        if (NetworkUtils.isWifiConnected()) {
-            String ssid = NetworkUtils.getSSID();
-            System.out.println(ssid);
-        } else {
-            LogUtils.e("Wifi没有连接");
-        }
+    @Test
+    public void a() throws Exception {
+
     }
 
-    @Test public void b() {
+    @Test
+    public void b() {
 
     }
 
@@ -46,7 +43,9 @@ public class TestForJava {
         return hex.toUpperCase();
     }
 
-    /**大端/小端互转*/
+    /**
+     * 大端/小端互转
+     */
     public String hexStr2DEC(String hexStr) {
         String real1 = "";
         String real = "";
@@ -66,8 +65,10 @@ public class TestForJava {
         return real;
     }
 
-    /**大端/小端互转*/
-    public static byte[] changeBytesEndian(byte[] x){
+    /**
+     * 大端/小端互转
+     */
+    public static byte[] changeBytesEndian(byte[] x) {
         byte[] y = new byte[x.length];
         for (int i = 0; i < y.length; i++) {
             y[i] = x[y.length - i - 1];
@@ -78,6 +79,7 @@ public class TestForJava {
     /**
      * 将bytes转为大端数据，返回int
      * c存储二进制文件是用的小端存储，java都是大端存储，因此需要转换，此方法用于将数据转为大端存储，读出二进制文件
+     *
      * @param bytes
      * @return
      */
@@ -88,10 +90,11 @@ public class TestForJava {
     /**
      * 将bytes转为小端数据，返回int
      * c存储二进制文件是用的小端存储，java都是大端存储，因此需要转换，此方法用于将数据转为小端存储，写入二进制文件
+     *
      * @param bytes
      * @return
      */
-    private static int bytesToLittleEndianInt(byte[] bytes){
+    private static int bytesToLittleEndianInt(byte[] bytes) {
         return ByteBuffer.wrap(bytes).order(ByteOrder.BIG_ENDIAN).getInt();
     }
 
@@ -126,16 +129,20 @@ public class TestForJava {
     public class Result {
         public Result() {
         }
+
         public Result(boolean canPass, String voiceInfo, String promptInfo) {
             this.canPass = canPass;
             this.voiceInfo = voiceInfo;
             this.promptInfo = promptInfo;
         }
+
         public boolean canPass;
         public String voiceInfo;
         public String promptInfo;
     }
-    @Test public void getPassResult() {
+
+    @Test
+    public void getPassResult() {
         Result result = new Result();
         result.canPass = false;
 
@@ -208,7 +215,7 @@ public class TestForJava {
                 String[] timeSlots = ruleTime.split(",");
 
                 for (int i = 0; i < timeSlots.length; i++) {
-                    if (i == 0)  detailInfo.append("每周");
+                    if (i == 0) detailInfo.append("每周");
                     detailInfo.append(timeSlots[i]).append(",");
                 }
                 for (int i = 0; i < timeSlots.length; i++) {
@@ -223,10 +230,18 @@ public class TestForJava {
     private boolean checkTimeRule(SimpleDateFormat df, String ruleTime) {
         String timeUnit = "";
         switch (df.toPattern()) { // @formatter:off
-            case "yyyy": timeUnit = "年";break;
-            case "MM": timeUnit = "月";break;
-            case "dd": timeUnit = "日";break;
-            case "HH:mm": timeUnit = "小时";break;
+            case "yyyy":
+                timeUnit = "年";
+                break;
+            case "MM":
+                timeUnit = "月";
+                break;
+            case "dd":
+                timeUnit = "日";
+                break;
+            case "HH:mm":
+                timeUnit = "小时";
+                break;
         } // @formatter:on
         try {
             if (ruleTime != null) {
