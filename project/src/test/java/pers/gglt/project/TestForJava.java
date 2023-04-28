@@ -26,12 +26,34 @@ public class TestForJava {
 
     @Test
     public void a() throws Exception {
-
+        if (NetworkUtils.isWifiConnected()) {
+            String ssid = NetworkUtils.getSSID();
+            System.out.println(ssid);
+        } else {
+            LogUtils.e("Wifi没有连接");
+        }
     }
 
     @Test
     public void b() {
+        String t = "20230426183000";
+        String qrcode = "KJY__8CFCA0F3002F_20230426180903_20230427103000_20230426190000";
+        String[] subContent = qrcode.split("_");
+        for (String s:subContent) System.out.println(s);
 
+        System.out.println(subContent[4]);
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+        //System.out.println(df.format(new Date()));
+
+        long startMillisTime = TimeUtils.string2Millis(subContent[4], new SimpleDateFormat("yyyyMMddHHmmss"));
+        long spanMin = TimeUtils.getTimeSpanByNow(startMillisTime, TimeConstants.MIN);
+        if (spanMin > 15L) { //时间未到
+
+        } else if (spanMin > 0L && spanMin < 15L) { //可入场
+
+        } else if (spanMin < -15L) { //迟到
+
+        }
     }
 
 

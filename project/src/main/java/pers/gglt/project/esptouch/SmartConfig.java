@@ -41,8 +41,9 @@ public class SmartConfig {
         new Thread(()-> {
             int expectResultCount = 1;
             task = new EsptouchTask(apSsid, apBssid, apPwd, context);
+            task.setPackageBroadcast(true);
             List<IEsptouchResult> results = task.executeForResults(expectResultCount);
-            LogUtils.d("666 = " + results);
+            LogUtils.d(results);
 //            IEsptouchResult first = results.get(0);
 //            if (first.isCancelled()) return;
 //            if (first.isSuc()) {

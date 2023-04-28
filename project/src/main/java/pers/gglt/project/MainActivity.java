@@ -1,18 +1,22 @@
 package pers.gglt.project;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.blankj.utilcode.util.FragmentUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.NetworkUtils;
+import com.blankj.utilcode.util.Utils;
 import com.espressif.iot.esptouch.util.ByteUtil;
 import com.espressif.iot.esptouch.util.TouchNetUtil;
 
@@ -48,21 +52,27 @@ public class MainActivity extends BaseActivity {
             startActivity(new Intent(this, ImageAct.class));
         });
 
-        if (NetworkUtils.isWifiConnected()) {
-            WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+//        if (NetworkUtils.isWifiConnected()) {
+//            WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+//            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+//
+//            String ssid = wifiInfo.getSSID();
+//            String bssid = wifiInfo.getBSSID();
+//            String pwd = "dawan123";
+//
+//            SmartConfig.get().setWifiInfo(ssid, bssid, pwd).execTask();
+//
+//        } else {
+//            LogUtils.e("Wifi没有连接");
+//        }
 
-            String ssid = wifiInfo.getSSID();
-            String bssid = wifiInfo.getBSSID();
-            String pwd = "dawan123";
 
-            SmartConfig.get().
-                    setWifiInfo(ssid, bssid, pwd).
-                    execTask();
-
-        } else {
-            LogUtils.e("Wifi没有连接");
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
         }
+        NetworkUtils.addOnWifiChangedConsumer(wifiScanResults -> {
+
+        });
     }
 
     @Override
