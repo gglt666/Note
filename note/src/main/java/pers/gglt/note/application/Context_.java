@@ -6,7 +6,7 @@ public class Context_ {
     // this (Act实例)(扩展了context)
     // Act.context ()
     // App.context ()
-    // base.context (不推荐使用)(返回由构造函数指定/setBaseContext()设置的上下文)
+    // base.context (不推荐使用)(返回由构造函数指定/由setBaseContext()设置的上下文)
 
     /**概念*/
     //
