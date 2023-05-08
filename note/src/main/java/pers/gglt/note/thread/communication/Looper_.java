@@ -1,8 +1,4 @@
-package pers.gglt.note.communication;
-
-import android.os.Handler;
-import android.os.Message;
-import android.os.MessageQueue;
+package pers.gglt.note.thread.communication;
 
 public class Looper_ {
 

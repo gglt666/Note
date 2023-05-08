@@ -1,4 +1,4 @@
-package pers.gglt.note;
+package pers.gglt.note.process;
 
 /**
  * 概念  拥有若干线程

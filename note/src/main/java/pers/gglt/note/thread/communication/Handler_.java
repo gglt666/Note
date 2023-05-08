@@ -1,4 +1,4 @@
-package pers.gglt.note.communication;
+package pers.gglt.note.thread.communication;
 
 import android.os.Handler;
 import android.os.Looper;
