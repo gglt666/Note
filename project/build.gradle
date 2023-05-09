@@ -7,6 +7,10 @@ android {
     compileSdk 33
     viewBinding {enabled = true}
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
     defaultConfig {
         applicationId "pers.gglt.project"
         minSdk 24

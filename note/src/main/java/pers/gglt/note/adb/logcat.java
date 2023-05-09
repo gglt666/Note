@@ -7,4 +7,9 @@ public class logcat {
     /**反向过滤*/
     // ^(?!.*(AAA|BBB)).*$
 
+
+    /**日志*/
+    // adb shell
+    // logcat | grep com.xxx.xxx
+
 }

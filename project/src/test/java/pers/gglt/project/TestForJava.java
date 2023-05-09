@@ -4,23 +4,33 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import android.util.Base64;
+
 import com.blankj.utilcode.constant.TimeConstants;
 import com.blankj.utilcode.util.ConvertUtils;
+import com.blankj.utilcode.util.EncodeUtils;
+import com.blankj.utilcode.util.EncryptUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.NetworkUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.TimeUtils;
 import com.google.gson.JsonObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+
+import javax.crypto.Cipher;
 
 public class TestForJava {
 
@@ -35,34 +45,103 @@ public class TestForJava {
     }
 
     @Test
-    public void b() {
-        String t = "20230426183000";
-        String qrcode = "KJY__8CFCA0F3002F_20230426180903_20230427103000_20230426190000";
-        String[] subContent = qrcode.split("_");
-        for (String s:subContent) System.out.println(s);
+    public void b() throws Exception {
+////        String qrcode = "U2FsdGVkX19Aps205oYJ2l4PbHhDIcpDOQnbdcY34gHRk3QuS2vs6mbvLE9PDDcz0nDIgQ6n1iR5LmyB5k54RkbumtHIKmX5";
+//        String qrcode = "U2FsdGVkX1/Fk1IjRafVqBDMJp4eixxy5Wy9hEYBlMcGDgCnFyG5n/7hrAA8w4I4gExlgQFiY3bWYuDdhqgF78A+KxVSfgxG";
+//
+//        byte[] qrcodeDecode1 = qrcode.getBytes("UTF8");
+//
+//
+////        byte[] qrcodeDecode2 = pkcs5Pad(qrcode);
+////        byte[] qrcodeDecode3 = Base64.getDecoder().decode(qrcodeDecode1);
+//
+////        String desKey = "wD34d2*+";
+//        String desKey = "DW12345E";
+//        byte[] desKeyDecode1 = desKey.getBytes("UTF8");
+////        byte[] desKeyDecode2 = EncodeUtils.base64Decode(desKey);
+//        //byte[] desKeyDecode3 = Base64.getDecoder().decode(desKey);
+//        //byte[] des = EncryptUtils.decryptBase64DES(ConvertUtils.string2Bytes(qrcode), ConvertUtils.string2Bytes(desKey), "DES/ECB/NoPadding", null);
+//
+//        byte[] encryptBytes  = EncryptUtils.encryptDES(a.getBytes(), desKey.getBytes(), "DES/ECB/PKCS5Padding", null);
+//        System.out.println("加密后 = " + new String(encryptBytes));
 
-        System.out.println(subContent[4]);
-        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-        //System.out.println(df.format(new Date()));
+        //byte[] decryptBytes = EncryptUtils.decryptDES(qrcodeDecode1, desKeyDecode1, "DES/ECB/PKCS5Padding", null);
+        //byte[] decryptBytes2 = EncryptUtils.decryptDES(qrcodeDecode3, desKeyDecode1, "DES", null);
 
-        long startMillisTime = TimeUtils.string2Millis(subContent[4], new SimpleDateFormat("yyyyMMddHHmmss"));
-        long spanMin = TimeUtils.getTimeSpanByNow(startMillisTime, TimeConstants.MIN);
-        if (spanMin > 15L) { //时间未到
+        //System.out.println(new String(decryptBytes));
 
-        } else if (spanMin > 0L && spanMin < 15L) { //可入场
 
-        } else if (spanMin < -15L) { //迟到
+        String data = "8030037_20230509100158_20230509103000_20230509110000";
+        //String a = "123456456";
+        String desKey = "DW12345E";
 
+        //byte[] encode = Base64.encode(data.getBytes(), Base64.NO_WRAP);
+        byte[] encryptBytes = EncryptUtils.encryptDES(data.getBytes(), desKey.getBytes(), "DES", null);
+
+        System.out.println(ConvertUtils.bytes2String(encryptBytes,"GBK"));
+
+        System.out.println("加密后 = " + new String(encryptBytes));
+
+
+        byte[] decryptBytes = EncryptUtils.decryptDES(encryptBytes, desKey.getBytes(), "DES", null);
+        System.out.println("解密后 = " + new String(decryptBytes));
+    }
+
+    /**
+     * <p>方法描述：不足8的倍数，后面追加空格</p>
+     */
+    private static byte[] pkcs5Pad(final String inSouce) throws UnsupportedEncodingException {
+        byte[] bySource = inSouce.getBytes("UTF8");
+
+        // 密文和密钥的长度必须是8的倍数
+        if (0 == bySource.length % 8) {
+            return bySource;
         }
+
+        int length = bySource.length;
+        int nPaddedLength = (length / 8 + 1) * 8;
+        byte[] byReturn = new byte[nPaddedLength];
+        System.arraycopy(bySource, 0, byReturn, 0, length);
+        int i = length;
+        while (i < nPaddedLength) {
+            byReturn[i] = (byte) (nPaddedLength - length);
+            i++;
+        }
+        return byReturn;
     }
 
 
-    public static String decimal2fitHex(long num) {
-        String hex = Long.toHexString(num).toUpperCase();
-        if (hex.length() % 2 != 0) {
-            return "0" + hex;
+    /**
+     * ASCII码hex字符串转String明文
+     * 每两个字符表示的16进制ASCII码解析成一个明文字符
+     *
+     * @param hex
+     * @return
+     */
+    public static String hex2Str(String hex) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < hex.length() - 1; i += 2) {
+            String h = hex.substring(i, (i + 2));
+            int decimal = Integer.parseInt(h, 16);
+            sb.append((char) decimal);
         }
-        return hex.toUpperCase();
+        return sb.toString();
+    }
+
+    /**
+     * byte数组转hex
+     *
+     * @param bytes
+     * @return
+     */
+    public static String byteToHex(byte[] bytes) {
+        String strHex = "";
+        StringBuilder sb = new StringBuilder("");
+        for (int n = 0; n < bytes.length; n++) {
+            strHex = Integer.toHexString(bytes[n] & 0xFF);
+            sb.append((strHex.length() == 1) ? "0" + strHex : strHex); // 每个字节由两个字符表示，位数不够，高位补0
+        }
+        return sb.toString().trim();
     }
 
     /**

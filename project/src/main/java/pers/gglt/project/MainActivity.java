@@ -22,7 +22,9 @@ import com.espressif.iot.esptouch.util.TouchNetUtil;
 
 import pers.gglt.project.base.BaseActivity;
 import pers.gglt.project.databinding.ActMainBinding;
+import pers.gglt.project.esptouch.IHexMsg;
 import pers.gglt.project.esptouch.SmartConfig;
+import pers.gglt.project.esptouch.Tcp;
 import pers.gglt.project.gesture.ImageAct;
 import pers.gglt.project.senor.orientation.OrientationListener;
 
@@ -67,12 +69,30 @@ public class MainActivity extends BaseActivity {
 //        }
 
 
+        new Thread(() -> {
+            Tcp.get()
+                    .connect("192.168.4.1", 8080)
+                    .ctrlRelay(IHexMsg.openRelay1, IHexMsg.closeRelay1, 3000);
+        }).start();
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
-        }
-        NetworkUtils.addOnWifiChangedConsumer(wifiScanResults -> {
+        } else {
+            NetworkUtils.registerNetworkStatusChangedListener(new NetworkUtils.OnNetworkStatusChangedListener() {
+                @Override
+                public void onDisconnected() {}
 
-        });
+                @Override
+                public void onConnected(NetworkUtils.NetworkType networkType) {
+                    LogUtils.e("type = " + networkType);
+                }
+            });
+//            NetworkUtils.addOnWifiChangedConsumer(wifiScanResults -> {
+//                LogUtils.d(wifiScanResults);
+//                LogUtils.d(wifiScanResults.getAllResults());
+//            });
+        }
+
     }
 
     @Override
