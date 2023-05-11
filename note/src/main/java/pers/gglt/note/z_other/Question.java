@@ -8,7 +8,7 @@ public class Question {
 //    Handler怎么进行线程通信，原理是什么？
 //    Handler如果没有消息处理是阻塞的还是非阻塞的？
 //    runnable是如何执行的？
-//    handler的Callback和handlemessage都存在，但callback返回true，handleMessage还会执行么？
+//    handler的Callback和handleMessage都存在，但callback返回true，handleMessage还会执行么？
 //    Handler的sendMessage和postDelay的区别？
 //    怎么跨进程传递大图片？
 //    各种跨进程传输数据的方式及各自优缺点？
