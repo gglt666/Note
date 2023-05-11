@@ -23,6 +23,8 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -46,45 +48,28 @@ public class TestForJava {
 
     @Test
     public void b() throws Exception {
-////        String qrcode = "U2FsdGVkX19Aps205oYJ2l4PbHhDIcpDOQnbdcY34gHRk3QuS2vs6mbvLE9PDDcz0nDIgQ6n1iR5LmyB5k54RkbumtHIKmX5";
-//        String qrcode = "U2FsdGVkX1/Fk1IjRafVqBDMJp4eixxy5Wy9hEYBlMcGDgCnFyG5n/7hrAA8w4I4gExlgQFiY3bWYuDdhqgF78A+KxVSfgxG";
-//
-//        byte[] qrcodeDecode1 = qrcode.getBytes("UTF8");
-//
-//
-////        byte[] qrcodeDecode2 = pkcs5Pad(qrcode);
-////        byte[] qrcodeDecode3 = Base64.getDecoder().decode(qrcodeDecode1);
-//
-////        String desKey = "wD34d2*+";
-//        String desKey = "DW12345E";
-//        byte[] desKeyDecode1 = desKey.getBytes("UTF8");
-////        byte[] desKeyDecode2 = EncodeUtils.base64Decode(desKey);
-//        //byte[] desKeyDecode3 = Base64.getDecoder().decode(desKey);
-//        //byte[] des = EncryptUtils.decryptBase64DES(ConvertUtils.string2Bytes(qrcode), ConvertUtils.string2Bytes(desKey), "DES/ECB/NoPadding", null);
-//
-//        byte[] encryptBytes  = EncryptUtils.encryptDES(a.getBytes(), desKey.getBytes(), "DES/ECB/PKCS5Padding", null);
-//        System.out.println("加密后 = " + new String(encryptBytes));
+        String data = "K_8030037_20230510110105_20230510110000_20230510113000_391d3298942dd22709d9ccdc33109fb4";
+        String key = "wD34d2*8030037_20230510110105_20230510110000_20230510113000";
 
-        //byte[] decryptBytes = EncryptUtils.decryptDES(qrcodeDecode1, desKeyDecode1, "DES/ECB/PKCS5Padding", null);
-        //byte[] decryptBytes2 = EncryptUtils.decryptDES(qrcodeDecode3, desKeyDecode1, "DES", null);
+        String md5 = data.substring(data.lastIndexOf("_") + 1);
+        String data2 = data.substring(0, data.lastIndexOf("_"));
+        System.out.println("md5=" + md5);
+        System.out.println("data=" + data2);
 
-        //System.out.println(new String(decryptBytes));
+    }
 
 
-        String data = "8030037_20230509100158_20230509103000_20230509110000";
-        //String a = "123456456";
-        String desKey = "DW12345E";
+    public static String getMd5(String text) throws NoSuchAlgorithmException {
+        MessageDigest md5 = MessageDigest.getInstance("MD5");
+        byte[] bytes = md5.digest(text.getBytes(StandardCharsets.UTF_8));
 
-        //byte[] encode = Base64.encode(data.getBytes(), Base64.NO_WRAP);
-        byte[] encryptBytes = EncryptUtils.encryptDES(data.getBytes(), desKey.getBytes(), "DES", null);
+        StringBuilder builder = new StringBuilder();
 
-        System.out.println(ConvertUtils.bytes2String(encryptBytes,"GBK"));
+        for (byte aByte : bytes) {
+            builder.append(Integer.toHexString((0x000000FF & aByte) | 0xFFFFFF00).substring(6));
+        }
 
-        System.out.println("加密后 = " + new String(encryptBytes));
-
-
-        byte[] decryptBytes = EncryptUtils.decryptDES(encryptBytes, desKey.getBytes(), "DES", null);
-        System.out.println("解密后 = " + new String(decryptBytes));
+        return builder.toString();
     }
 
     /**

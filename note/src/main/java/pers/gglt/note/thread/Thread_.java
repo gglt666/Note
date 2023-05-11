@@ -8,6 +8,9 @@ import java.util.concurrent.locks.LockSupport;
 public class Thread_ {
     Thread thread = new Thread();
 
+    /**Runnable*/
+    //
+
     /**概念*/
     // 某进程中一个单独运行的程序
 
