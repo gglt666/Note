@@ -23,8 +23,9 @@ public class MainThread {
     // 子线程导致 (子线程持有锁/崩溃，主线程等待超时)
 
     /**ANR时间*/
-    // 5s  (Activity,Service)
+    // 5s  (Activity)
     // 10s (BroadCastReceiver)
+    // 20s (Service)
 
     /**ANR避免*/
     // 子线程执行耗时操作 (网络请求,文件读写,数据库读写,复杂逻辑计算)

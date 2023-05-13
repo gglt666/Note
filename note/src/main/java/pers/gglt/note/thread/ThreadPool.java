@@ -32,6 +32,11 @@ public class ThreadPool {
     }
 
     /**类型*/
+    // cache
+    // fixed (全是核心线程)(请求响应快)(占用一定系统资源)
+    // scheduled
+    // singleThread
+
     void cacheThreadPool() {
         // 特点  没有核心线程，为每个任务创建新线程或利用空闲线程执行(60s空闲时间)
         // 优点  立即执行任务

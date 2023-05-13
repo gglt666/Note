@@ -6,6 +6,8 @@ public class Draw {
     // DecorView (界面窗口的根布局)(继承FrameLayout,从而继承ViewGroup)
 
     /**绘制流程*/
+    /**入口 {@link #performTraversals()}*/
+    // 从ViewRootImpl.performTraversals开始,从上到下遍历整个视图树,每个View控件负责绘制自己,而ViewGroup负责通知子View进行绘制操作
     // measure (测量大小)
     //      1.调用FrameLayout.onMeasure
     //      2.内部设置ViewGroup的宽高
@@ -21,7 +23,14 @@ public class Draw {
     //      3.View.draw.onDraw + dispatchDraw
     //          dispatchDraw遍历子view,调用view.drawChild.onDraw
 
-    // 从ViewRootImpl.performTraversals开始,从上到下遍历整个视图树,每个View控件负责绘制自己,而ViewGroup负责通知子View进行绘制操作
+    /**getWidth与getMeasuredWidth区别*/
+    // 值 (一般相同)
+    // 获取时机 (getMeasureWidth在measure后)(getWidth在layout后)
+
+    /**窗口系统*/
+    // PhoneWindow (每个Act创建一个)
+
+
     private void performTraversals() {
 //      ...
 //      int childWidthMeasureSpec = getRootMeasureSpec(mWidth, lp.width);
@@ -36,11 +45,4 @@ public class Draw {
 //      //执行绘制流程
 //      performDraw();
     }
-
-    /**getWidth与getMeasuredWidth区别*/
-    // 值 (一般相同)
-    // 获取时机 (getMeasureWidth在measure后)(getWidth在layout后)
-
-    /**窗口系统*/
-    // PhoneWindow (每个Act创建一个)
 }

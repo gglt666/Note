@@ -68,12 +68,10 @@ public class MainActivity extends BaseActivity {
 //            LogUtils.e("Wifi没有连接");
 //        }
 
-
-        new Thread(() -> {
-            Tcp.get()
-                    .connect("192.168.4.1", 8080)
-                    .ctrlRelay(IHexMsg.openRelay1, IHexMsg.closeRelay1, 3000);
-        }).start();
+        new Thread(() -> Tcp.get()
+                .connect("192.168.4.1", 8080)
+                .ctrlRelay(IHexMsg.openRelay1, IHexMsg.closeRelay1, 3000))
+                .start();
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
@@ -92,7 +90,6 @@ public class MainActivity extends BaseActivity {
 //                LogUtils.d(wifiScanResults.getAllResults());
 //            });
         }
-
     }
 
     @Override

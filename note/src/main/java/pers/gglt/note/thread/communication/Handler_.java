@@ -23,7 +23,7 @@ import androidx.annotation.NonNull;
  *        调用 quit() 时会调用 messageQueue.quit() 退出 loop()
  *        作用
  *
- * 流程  主\子线程均持有 Looper 和 Handler
+ * 流程  主\子线程均持有 Looper + Handler + MessageQueue
  *      主线程持有 Message, MessageQueue, Handler, Looper
  *      子线程持有 Message2, MessageQueue2, Handler2, Looper2
  *      子线程通过 Handler2 获取 Looper2，再获取 MessageQueue2 后取出 Message2, 通过 Handler2.dispatchMessage 传递给 Handler1, 最终调用 Handler1.handleMessage 处理
@@ -49,4 +49,6 @@ public class Handler_ {
         Handler handler1 = new Handler(); //默认绑定主线程的 Looper
         Handler handler2 = new Handler(mainLooper); //绑定了 Looper
     }
+
+    /**流程*/
 }
