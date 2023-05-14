@@ -8,4 +8,10 @@ class Kotlin {
     fun f(a: Int, b: Int): Int {
         return a + b;
     }
+
+    /**Kt与Java*/
+    //https://github.com/amitshekhariitbhu/from-java-to-kotlin
+
+    /**优势*/
+
 }
