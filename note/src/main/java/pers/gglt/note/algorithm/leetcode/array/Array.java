@@ -1,4 +1,4 @@
-package pers.gglt.note.leetcode.array;
+package pers.gglt.note.algorithm.leetcode.array;
 
 //https://www.programmercarl.com
 public class Array {

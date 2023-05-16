@@ -13,5 +13,9 @@ class Kotlin {
     //https://github.com/amitshekhariitbhu/from-java-to-kotlin
 
     /**优势*/
-
+    // 空安全 ()
+    // 数据类 ()
+    // 密封类
+    // 高阶函数
+    // https://worktile.com/kb/p/37373
 }
