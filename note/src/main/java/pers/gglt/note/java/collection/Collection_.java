@@ -1,4 +1,4 @@
-package pers.gglt.note.java;
+package pers.gglt.note.java.collection;
 
 import java.util.ArrayList;
 import java.util.Iterator;
