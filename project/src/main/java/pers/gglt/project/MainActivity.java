@@ -1,30 +1,23 @@
 package pers.gglt.project;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-
-import com.blankj.utilcode.util.FragmentUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.NetworkUtils;
-import com.blankj.utilcode.util.Utils;
-import com.espressif.iot.esptouch.util.ByteUtil;
-import com.espressif.iot.esptouch.util.TouchNetUtil;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import pers.gglt.project.base.BaseActivity;
 import pers.gglt.project.databinding.ActMainBinding;
-import pers.gglt.project.esptouch.IHexMsg;
 import pers.gglt.project.esptouch.SmartConfig;
-import pers.gglt.project.esptouch.Tcp;
 import pers.gglt.project.gesture.ImageAct;
 import pers.gglt.project.senor.orientation.OrientationListener;
 
@@ -34,7 +27,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void widgetClick(View v) {
-
     }
 
     @Override
@@ -54,42 +46,38 @@ public class MainActivity extends BaseActivity {
             startActivity(new Intent(this, ImageAct.class));
         });
 
-//        if (NetworkUtils.isWifiConnected()) {
-//            WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-//            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-//
-//            String ssid = wifiInfo.getSSID();
-//            String bssid = wifiInfo.getBSSID();
-//            String pwd = "dawan123";
-//
-//            SmartConfig.get().setWifiInfo(ssid, bssid, pwd).execTask();
-//
-//        } else {
-//            LogUtils.e("Wifi没有连接");
-//        }
+        if (NetworkUtils.isWifiConnected()) {
+            WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
 
-        new Thread(() -> Tcp.get()
-                .connect("192.168.4.1", 8080)
-                .ctrlRelay(IHexMsg.openRelay1, IHexMsg.closeRelay1, 3000))
-                .start();
+            String ssid = wifiInfo.getSSID();
+            String bssid = wifiInfo.getBSSID();
+            String pwd = "dawan123";
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
+            SmartConfig.get().setWifiInfo(ssid, bssid, pwd).execTask();
+
         } else {
-            NetworkUtils.registerNetworkStatusChangedListener(new NetworkUtils.OnNetworkStatusChangedListener() {
-                @Override
-                public void onDisconnected() {}
-
-                @Override
-                public void onConnected(NetworkUtils.NetworkType networkType) {
-                    LogUtils.e("type = " + networkType);
-                }
-            });
+            LogUtils.e("Wifi没有连接");
+        }
+//
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            return;
+//        } else {
+//            NetworkUtils.registerNetworkStatusChangedListener(new NetworkUtils.OnNetworkStatusChangedListener() {
+//                @Override
+//                public void onDisconnected() {}
+//
+//                @Override
+//                public void onConnected(NetworkUtils.NetworkType networkType) {
+//                    LogUtils.e("type = " + networkType);
+//                }
+//            });
 //            NetworkUtils.addOnWifiChangedConsumer(wifiScanResults -> {
 //                LogUtils.d(wifiScanResults);
 //                LogUtils.d(wifiScanResults.getAllResults());
 //            });
-        }
+//        }
+
     }
 
     @Override
@@ -104,5 +92,6 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void doBusiness(Context mContext) {}
+    public void doBusiness(Context mContext) {
+    }
 }

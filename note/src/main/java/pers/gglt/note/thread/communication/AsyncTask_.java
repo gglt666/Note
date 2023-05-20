@@ -4,6 +4,11 @@ import android.os.AsyncTask;
 
 public class AsyncTask_ extends AsyncTask {
 
+    /**调用顺序*/
+    // onPreExecute
+    // doInBackground
+    // onPostExecute
+    //
 
     /**原理*/
     // 有两个线程池，一个用于任务排队，一个用于执行任务

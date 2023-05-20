@@ -1,8 +1,6 @@
 package pers.gglt.project.esptouch;
 
-import android.app.Application;
 import android.content.Context;
-import android.util.Log;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.espressif.iot.esptouch.EsptouchTask;

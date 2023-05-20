@@ -2,7 +2,7 @@ package pers.gglt.note.java.collection;
 
 public class Map {
     /**共同特点*/
-    // 键不可重复,值可重复
+    // (双列数据)(键不可重复,值可重复)
 
 
     /**HashMap*/

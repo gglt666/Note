@@ -30,6 +30,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import javax.crypto.Cipher;
@@ -48,13 +50,7 @@ public class TestForJava {
 
     @Test
     public void b() throws Exception {
-        String data = "K_8030037_20230510110105_20230510110000_20230510113000_391d3298942dd22709d9ccdc33109fb4";
-        String key = "wD34d2*8030037_20230510110105_20230510110000_20230510113000";
 
-        String md5 = data.substring(data.lastIndexOf("_") + 1);
-        String data2 = data.substring(0, data.lastIndexOf("_"));
-        System.out.println("md5=" + md5);
-        System.out.println("data=" + data2);
 
     }
 
