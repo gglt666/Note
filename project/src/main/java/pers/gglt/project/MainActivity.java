@@ -18,6 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import pers.gglt.project.base.BaseActivity;
 import pers.gglt.project.databinding.ActMainBinding;
 import pers.gglt.project.esptouch.SmartConfig;
+import pers.gglt.project.esptouch.TouchNetUtil;
 import pers.gglt.project.gesture.ImageAct;
 import pers.gglt.project.senor.orientation.OrientationListener;
 
@@ -53,8 +54,9 @@ public class MainActivity extends BaseActivity {
             String ssid = wifiInfo.getSSID();
             String bssid = wifiInfo.getBSSID();
             String pwd = "dawan123";
+            byte[] apBssid = TouchNetUtil.parseBssid2bytes(wifiInfo.getBSSID());
 
-            SmartConfig.get().setWifiInfo(ssid, bssid, pwd).execTask();
+            SmartConfig.get().setWifiInfo(wifiInfo, "dawan123").execTask();
 
         } else {
             LogUtils.e("Wifi没有连接");

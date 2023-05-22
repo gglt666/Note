@@ -1,12 +1,12 @@
 package pers.gglt.project.esptouch;
 
 import android.content.Context;
+import android.net.wifi.WifiInfo;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.espressif.iot.esptouch.EsptouchTask;
 import com.espressif.iot.esptouch.IEsptouchResult;
 import com.espressif.iot.esptouch.util.ByteUtil;
-import com.espressif.iot.esptouch.util.TouchNetUtil;
 
 import java.util.List;
 
@@ -28,25 +28,26 @@ public class SmartConfig {
         });
     }
 
-    public SmartConfig setWifiInfo(String ssid, String bssid, String pwd) {
+    public SmartConfig setWifiInfo(WifiInfo wifiInfo, String pwd) {
         apPwd = ByteUtil.getBytesByString(pwd);
-        apSsid = ByteUtil.getBytesByString(ssid);
-        apBssid = TouchNetUtil.parseBssid2bytes(bssid);
+        apSsid = TouchNetUtil.getRawSsidBytesOrElse(wifiInfo, wifiInfo.getSSID().getBytes());
+        apBssid = TouchNetUtil.parseBssid2bytes(wifiInfo.getBSSID());
         return this;
     }
 
     public void execTask() {
         new Thread(()-> {
-            int expectResultCount = 1;
             task = new EsptouchTask(apSsid, apBssid, apPwd, context);
             task.setPackageBroadcast(true);
-            List<IEsptouchResult> results = task.executeForResults(expectResultCount);
-            LogUtils.d(results);
-//            IEsptouchResult first = results.get(0);
-//            if (first.isCancelled()) return;
-//            if (first.isSuc()) {
-//                LogUtils.d("666 = " + first.getInetAddress());
-//            }
+            List<IEsptouchResult> results = task.executeForResults(5);
+
+            for (IEsptouchResult result : results) {
+                if (result.isSuc()) {
+                    LogUtils.d("ip = " + result.getInetAddress());
+                }
+            }
+
+
         }).start();
     }
 

@@ -50,7 +50,8 @@ public class TestForJava {
 
     @Test
     public void b() throws Exception {
-
+        String ip = "/192.168.33.102";
+        System.out.println(ip.replace("/",""));
 
     }
 
