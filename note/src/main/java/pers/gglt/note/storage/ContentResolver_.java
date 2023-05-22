@@ -15,6 +15,10 @@ import androidx.annotation.Nullable;
  * 作用  访问内容提供者中共享的数据
  */
 public class ContentResolver_ {
+    /***/
+    // 作用 (操作内容提供者中共享的数据)   //查询,插入,修改,删除
+    // 使用 (getContentResolver)(调用api)
+
     Context context;
 
     // 获取user表中所有记录
@@ -26,7 +30,6 @@ public class ContentResolver_ {
         values.put("name", "gg");
         values.put("age", 24);
         resolver.insert(uri, values);
-
 
         Cursor cursor = resolver.query(uri, null, null, null, "userid desc");
         while (cursor.moveToNext()) {
