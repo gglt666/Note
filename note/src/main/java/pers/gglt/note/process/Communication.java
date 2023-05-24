@@ -1,10 +1,8 @@
 package pers.gglt.note.process;
 
 public class Communication {
-    /**分类*/
-    // Binder (Intent,Messenger,AIDL,ContentProvider,文件共享)
-    // Socket
-
+    /***/
+    // 分类 (socket)(binder) //intent,messenger,aidl,contentProvider,file
 
     /**Intent*/
     // 场景 (4大组件间通信)

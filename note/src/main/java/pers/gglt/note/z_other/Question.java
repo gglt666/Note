@@ -3,6 +3,7 @@ package pers.gglt.note.z_other;
 public class Question {
 //    Android中多进程通信的方式有哪些？
 //    进程通信你用过哪些？原理是什么？
+
 //    描述下Binder机制原理？
 //    Binder线程池的工作过程是什么样？
 //    Handler怎么进行线程通信，原理是什么？

@@ -2,6 +2,7 @@ package pers.gglt.note.storage;
 
 import android.content.ContentProvider;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -31,16 +32,20 @@ import androidx.annotation.Nullable;
  */
 
 // https://zhuanlan.zhihu.com/p/487226358?utm_id=0
-public class ContentProvider_ extends ContentProvider {
+public class ContentProvider_ContentResolver extends ContentProvider {
     /**ContentProvider*/
-    // 概念 (提供统一存取/读取数据接口)(公共存储区域,所有程序可见)   //Android内置的许多数据（如视频，音频，图片，通讯录等）都是使用 ContentProvider 形式供开发者调用的
-    // 作用 (获取/保存数据)
+    // 概念 (提供接口,统一存取/读取数据)(公共存储区域,所有程序可见)
+    // 作用 (获取/保存数据)     //许多系统数据（如视频,音频,图片,通讯录等）使用 ContentProvider 形式供开发者调用
 
     // 通过 ContentResolver 来访问 ContentProvider 提供的数据, resolver通过uri定位数据
 
+    /**ContentResolver*/
+    // 作用 (操作内容提供者中共享的数据)   //查询,插入,修改,删除
+    // 使用 (getContentResolver)(调用api)
+
     /**Uri*/
-    // 概念 (系统中资源/数据的绝对路径)
-    // 要素 (前缀)(标识)(路径)(id)
+    // 概念 (绝对路径,系统中资源/数据)
+    // 要素 (前缀,content://)(标识)(路径)(id)
 
 
     @Override
@@ -76,5 +81,47 @@ public class ContentProvider_ extends ContentProvider {
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues contentValues, @Nullable String s, @Nullable String[] strings) {
         return 0;
+    }
+
+
+
+
+    // 获取user表中所有记录
+    void query() {
+        Context context = null;
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = Uri.parse("content://cn.scu.myprovider/user");
+
+        ContentValues values = new ContentValues();
+        values.put("name", "gg");
+        values.put("age", 24);
+        resolver.insert(uri, values);
+
+        Cursor cursor = resolver.query(uri, null, null, null, "userid desc");
+        while (cursor.moveToNext()) {
+            // 操作
+        }
+    }
+
+    // 把id为1的记录的name字段值更改新为gg
+    void update() {
+        Context context = null;
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = Uri.parse("content://cn.scu.myprovider/user");
+
+        ContentValues values = new ContentValues();
+        values.put("name", "gg");
+
+        Uri updateIdUri = ContentUris.withAppendedId(uri, 1);
+        resolver.update(updateIdUri, values, null, null);
+    }
+
+    // 删除id为2的记录
+    void delete() {
+        Context context = null;
+        ContentResolver resolver = context.getContentResolver();
+        Uri uri = Uri.parse("content://cn.scu.myprovider/user");
+        Uri deleteIdUri = ContentUris.withAppendedId(uri, 2);
+        resolver.delete(deleteIdUri, null, null);
     }
 }
