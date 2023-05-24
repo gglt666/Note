@@ -30,9 +30,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TransferQueue;
 
 import javax.crypto.Cipher;
 
@@ -50,8 +52,6 @@ public class TestForJava {
 
     @Test
     public void b() throws Exception {
-        String ip = "/192.168.33.102";
-        System.out.println(ip.replace("/",""));
 
     }
 

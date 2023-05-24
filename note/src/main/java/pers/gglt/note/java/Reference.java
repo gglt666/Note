@@ -23,10 +23,12 @@ import java.lang.ref.WeakReference;
  */
 
 /**
- * 弱引用 & 软引用
+ * 软引用和弱引用
  *       区别  软引用对象需通过算法检查是否回收。弱引用对象是立即回收
  */
 public class Reference {
+
+    /***/
 
     void define() {
         Object obj = new Object(); //声明强引用

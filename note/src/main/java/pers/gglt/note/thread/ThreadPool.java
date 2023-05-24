@@ -2,6 +2,7 @@ package pers.gglt.note.thread;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executor;
+import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -10,6 +11,17 @@ public class ThreadPool {
     /**优点*/
     // 性能（减少创建、销毁的开销）
     // 管理（可定时定期执行、控制并发数）
+
+    /**类型*/
+    // cache (新建/复用空闲线程(60s内))(大量短时任务)
+    // fixed (全是核心线程)(请求响应快)(占用一定系统资源)
+    // scheduled (定时/固定周期任务)
+    // singleThread
+    // 自定义线程池
+
+
+    /**自定义线程池*/
+    // 参数 (核心线程数)(最大线程数)(空闲线程存活时间)(时间单位)(任务队列)(线程工厂)(拒绝策略)
 
     /**参数*/
     void parameters() {
@@ -21,7 +33,9 @@ public class ThreadPool {
         ThreadFactory threadFactory = null;
         new ThreadPoolExecutor(
                 corePoolSize, maximumPoolSize, keepAliveTime,
-                timeUnit, workQueue, threadFactory);
+                timeUnit, workQueue, threadFactory, (r, executor) -> {
+
+                });
 
         // 池内有若干核心和非核心线程, 最大线程数 = 两者之和
     }
@@ -31,11 +45,8 @@ public class ThreadPool {
         // https://cloud.tencent.com/developer/article/1963812
     }
 
-    /**类型*/
-    // cache (新建/复用空闲线程(60s内))(大量短时任务)
-    // fixed (全是核心线程)(请求响应快)(占用一定系统资源)
-    // scheduled (定时/固定周期任务)
-    // singleThread
+
+
 
     void cacheThreadPool() {
         // 特点  没有核心线程,为每个任务创建新线程或利用空闲线程执行(60s空闲时间)

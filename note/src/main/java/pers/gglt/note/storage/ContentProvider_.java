@@ -34,7 +34,7 @@ import androidx.annotation.Nullable;
 public class ContentProvider_ extends ContentProvider {
     /**ContentProvider*/
     // 概念 (提供统一存取/读取数据接口)(公共存储区域,所有程序可见)   //Android内置的许多数据（如视频，音频，图片，通讯录等）都是使用 ContentProvider 形式供开发者调用的
-    // 作用 (保存和获取数据)
+    // 作用 (获取/保存数据)
 
     // 通过 ContentResolver 来访问 ContentProvider 提供的数据, resolver通过uri定位数据
 

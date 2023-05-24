@@ -32,13 +32,29 @@ import androidx.annotation.NonNull;
  *
  */
 public class Handler_ {
-    Handler handler = new Handler();
 
-    /**作用*/
-    // 发送消息至 MessageQueue
-    // 处理 Looper 发来的消息
+
+    /**Handler*/
+    // 作用 (发送消息至MessageQueue)(处理Looper发来的消息)
+
+    /**Message*/
+    // 分类 (硬件消息)(用户消息)
+
+    /**MessageQueue*/
+    // 作用 (循环判断其中是否有消息)
+
+    /**流程*/
+
+
+
+
+
+
+
+
+    Handler handler = new Handler(Looper.getMainLooper());
     void sendMsg() {
-        handler.sendMessage(null); //发送给已绑定 Looper 的消息队列
+        handler.sendMessage(null); //发送给已绑定Looper的消息队列
     }
     void handleMsg(@NonNull Message msg) {
        // ...
@@ -49,6 +65,4 @@ public class Handler_ {
         Handler handler1 = new Handler(); //默认绑定主线程的 Looper
         Handler handler2 = new Handler(mainLooper); //绑定了 Looper
     }
-
-    /**流程*/
 }

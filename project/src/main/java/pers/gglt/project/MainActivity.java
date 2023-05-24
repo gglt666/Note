@@ -10,8 +10,12 @@ import android.view.View;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.NetworkUtils;
 
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -47,20 +51,26 @@ public class MainActivity extends BaseActivity {
             startActivity(new Intent(this, ImageAct.class));
         });
 
-        if (NetworkUtils.isWifiConnected()) {
-            WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
 
-            String ssid = wifiInfo.getSSID();
-            String bssid = wifiInfo.getBSSID();
-            String pwd = "dawan123";
-            byte[] apBssid = TouchNetUtil.parseBssid2bytes(wifiInfo.getBSSID());
-
-            SmartConfig.get().setWifiInfo(wifiInfo, "dawan123").execTask();
-
-        } else {
-            LogUtils.e("Wifi没有连接");
+        ThreadPoolExecutor pool = new ThreadPoolExecutor(1, 1, 0, TimeUnit.SECONDS, new ArrayBlockingQueue<>(1), new ThreadPoolExecutor.DiscardPolicy());
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("queue = " + i);
+            try {
+                Thread.sleep(2000);
+                pool.execute(() -> {
+                    try {
+                        Thread.sleep(12000);
+                        System.out.println(666);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+
+
 //
 //        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 //            return;
