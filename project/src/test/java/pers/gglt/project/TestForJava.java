@@ -51,9 +51,7 @@ public class TestForJava {
     }
 
     @Test
-    public void b() throws Exception {
-
-    }
+    public void b() throws Exception {}
 
 
     public static String getMd5(String text) throws NoSuchAlgorithmException {

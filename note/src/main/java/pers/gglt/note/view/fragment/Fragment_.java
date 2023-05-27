@@ -14,6 +14,9 @@ import androidx.fragment.app.Fragment;
 import pers.gglt.note.R;
 
 public class Fragment_ extends Fragment {
+    /***/
+    // 生命周期 ()()()()
+
     /**与 Activity 通信*/
     //https://www.jianshu.com/p/1b824e26105b/
 
